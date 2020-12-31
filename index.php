@@ -1,21 +1,21 @@
 <?php 
 
-require_once("vendor/autoload.php");
+require_once("vendor/autoload.php");//do composer para traser as dependencias 
+//carrega as classes
+use \Slim\Slim;
+use \Hcode\Page;
 
-$app = new \Slim\Slim();
+$app = new Slim();
 
 $app->config('debug', true);
 
-$app->get('/', function() {
+$app->get('/', function() {//qual as rotas estou chamando
     
-	$sql = new Hcode\DB\Sql();
+    $page = new Page();
 
-	$results = $sql->select("SELECT * FROM tb_users");
-
-	echo json_encode($results);
-
+    $page->setTpl("index");
 });
 
-$app->run();
+$app->run();//liga a ignição apos carregar faz rodar 
 
  ?>
